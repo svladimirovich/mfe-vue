@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+
+  frontpage:
+    build:
+      context: ./frontpage
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8080
+    volumes:
+      - /app/node_modules
+      - ./frontpage:/app
+    depends_on:
+      - container
+    
+  container:
+    build:
+      context: ./container
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - /app/node_modules
+      - ./container:/app
